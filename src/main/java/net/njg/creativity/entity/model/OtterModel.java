@@ -7,6 +7,7 @@ package net.njg.creativity.entity.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -71,10 +72,10 @@ public class OtterModel extends EntityModel<Otter> {
 	public void setupAnim(Otter entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.xRot = headPitch * ((float)Math.PI / 180F);
 		this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
-		this.rightHindLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F) * 1.4F * ageInTicks;
-		this.leftHindLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F + (float)Math.PI) * 1.4F * ageInTicks;
-		this.rightFrontLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F + (float)Math.PI) * 1.4F * ageInTicks;
-		this.leftFrontLeg.xRot = Mth.cos(limbSwingAmount * 0.6662F) * 1.4F * ageInTicks;
+		this.rightHindLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.25F * limbSwingAmount;
+		this.leftHindLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.25F * limbSwingAmount;
+		this.rightFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 0.75F * limbSwingAmount;
+		this.leftFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 0.75F * limbSwingAmount;
 	}
 
 	@Override

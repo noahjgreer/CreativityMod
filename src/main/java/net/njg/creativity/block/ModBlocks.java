@@ -19,12 +19,6 @@ public class ModBlocks {
     // Register Initiation
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Creativity.MOD_ID);
-
-    // Block Definition Section
-    public static final RegistryObject<Block> BLACK_OPAL_BLOCK = registerBlock("black_opal_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(1.65f).requiresCorrectToolForDrops()));
-
     //// Concrete Slabs
     public static final RegistryObject<Block> WHITE_CONCRETE_SLAB = registerBlock("white_concrete_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE)

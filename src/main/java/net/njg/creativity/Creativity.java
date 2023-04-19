@@ -3,6 +3,7 @@ package net.njg.creativity;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.levelgen.synth.PerlinNoise;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,6 +22,7 @@ import net.njg.creativity.entity.model.OtterModel;
 import net.njg.creativity.entity.render.OtterRenderer;
 import net.njg.creativity.item.ModItems;
 import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.injection.Inject;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Creativity.MOD_ID)
@@ -53,13 +55,6 @@ public class Creativity
 
     private void addCreative(CreativeModeTabEvent.BuildContents event)
     {
-        if(event.getTab() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.BLACK_OPAL);
-        }
-
-        if(event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.BLACK_OPAL_BLOCK);
-        }
 
         if(event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.OTTER_SPAWN_EGG);

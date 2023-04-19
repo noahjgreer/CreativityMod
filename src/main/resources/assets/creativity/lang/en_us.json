@@ -1,6 +1,4 @@
 {
-  "item.creativity.black_opal": "Black Opal thing",
-  "block.creativity.black_opal_block": "Weird black opal block",
   "block.creativity.white_concrete_slab": "White Concrete Slab",
   "block.creativity.light_gray_concrete_slab": "Light Gray Concrete Slab",
   "block.creativity.gray_concrete_slab": "Gray Concrete Slab",
@@ -35,5 +33,7 @@
   "block.creativity.magenta_terracotta_slab": "Magenta Terracotta Slab",
   "block.creativity.pink_terracotta_slab": "Pink Terracotta Slab",
 
-  "item.creativity.otter_spawn_egg": "Otter Spawn Egg"
+  "item.creativity.otter_spawn_egg": "Otter Spawn Egg",
+
+  "entity.creativity.otter": "Otter"
 }

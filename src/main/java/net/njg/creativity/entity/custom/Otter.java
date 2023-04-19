@@ -74,7 +74,7 @@ public class Otter extends Animal {
     }
 
     public static AttributeSupplier.Builder getOtterAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10f).add(Attributes.MOVEMENT_SPEED, 0.5745f);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 12f).add(Attributes.MOVEMENT_SPEED, 0.35f);
     }
 
     @Nullable

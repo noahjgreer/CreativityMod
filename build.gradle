@@ -1,8 +1,28 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7.+'
+    }
+}
+
 plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
 }
+
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+
+
 
 version = '0.1-1.19.4'
 group = 'net.njg.creativity' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -50,6 +70,8 @@ minecraft {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'creativity'
+
+            arg "-mixin.config=mixins.creativity.json"
 
             mods {
                 creativity {
@@ -131,6 +153,8 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.19.4-45.0.43'
 
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
 
@@ -142,6 +166,15 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
 
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'mixins.creativity.refmap.json'
+    config 'mixins.creativity.json'
+
+    debug.verbose = true
+    debug.export = true
+    dumpTargetOnFailure = true
+}
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {

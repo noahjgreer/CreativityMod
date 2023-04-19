@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "net.njg.creativity.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+    "MixinPerlinNoise"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "mixins.creativity.refmap.json"
+}
