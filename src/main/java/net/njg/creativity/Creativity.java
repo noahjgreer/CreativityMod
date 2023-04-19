@@ -1,10 +1,13 @@
 package net.njg.creativity;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,6 +15,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.njg.creativity.block.ModBlocks;
+import net.njg.creativity.entity.ModEntityTypes;
+import net.njg.creativity.entity.custom.Otter;
+import net.njg.creativity.entity.model.OtterModel;
+import net.njg.creativity.entity.render.OtterRenderer;
 import net.njg.creativity.item.ModItems;
 import org.slf4j.Logger;
 
@@ -29,6 +36,7 @@ public class Creativity
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEntityTypes.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in
@@ -51,6 +59,10 @@ public class Creativity
 
         if(event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.BLACK_OPAL_BLOCK);
+        }
+
+        if(event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(ModItems.OTTER_SPAWN_EGG);
         }
 
         if(event.getTab() == CreativeModeTabs.COLORED_BLOCKS) {
@@ -100,7 +112,21 @@ public class Creativity
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+//            EntityRenderers.register(ModEntityTypes.OTTER.get(), OtterRenderer::new);
+        }
+        @SubscribeEvent
+        public static void entityAttributes(EntityAttributeCreationEvent event) {
+            event.put(ModEntityTypes.OTTER.get(), Otter.getOtterAttributes().build());
+        }
 
+        @SubscribeEvent
+        public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(ModEntityTypes.OTTER.get(), OtterRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(OtterModel.LAYER_LOCATION, OtterModel::createBodyLayer);
         }
     }
 }

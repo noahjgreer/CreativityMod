@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "creativity:brick_pyramid",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:concentric_rings",
+    "salt": 1981797024,
+    "frequency_reduction_method": "default",
+    "distance": 250,
+    "spread": 150,
+    "count": 1,
+    "preferred_biomes": []
+  }
+}
